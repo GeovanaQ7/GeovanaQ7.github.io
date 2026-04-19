@@ -3,271 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Geovana Queiroz | Análise de Dados & BI</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Geovana Queiroz | Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0c0e14;
-    --bg2: #13151f;
-    --bg3: #1a1d2b;
-    --border: rgba(255,255,255,0.07);
-    --accent: #4fd1c5;
-    --accent2: #7c6cfa;
-    --text: #e8eaf2;
-    --muted: #6b7280;
-    --mono: 'Space Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-  }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#050508;
+  --blue:#1a6cff;
+  --text:#f0f2ff;
+  --muted:#7a7f9a;
+  --border:rgba(255,255,255,0.08);
+  --card:rgba(255,255,255,0.04);
+  --syne:'Syne',sans-serif;
+  --inter:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:var(--inter);font-size:15px;line-height:1.7;overflow-x:hidden;}
 
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 2.5rem; border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; background: rgba(12,14,20,0.95);
-    backdrop-filter: blur(10px); z-index: 100;
-  }
-  .logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.05em; }
-  .logo span { color: var(--muted); }
-  nav ul { display: flex; gap: 1.8rem; list-style: none; }
-  nav a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  nav a:hover { color: var(--accent); }
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 3rem;
+  background:rgba(5,5,8,0.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--syne);font-size:15px;font-weight:800;color:var(--text);letter-spacing:0em;text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+nav ul{display:flex;gap:2.5rem;list-style:none;}
+nav a{font-family:var(--inter);font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+nav a:hover{color:var(--text);}
+.nav-btns{display:flex;gap:0.8rem;}
+.nav-btn{font-family:var(--inter);font-size:12px;padding:0.45rem 1.1rem;border-radius:6px;text-decoration:none;letter-spacing:0.05em;transition:all 0.2s;}
+.nav-btn-ghost{color:var(--muted);border:1px solid var(--border);}
+.nav-btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.2);}
+.nav-btn-solid{background:var(--blue);color:#fff;border:1px solid var(--blue);}
+.nav-btn-solid:hover{background:#1559d4;}
 
-  .hero {
-    padding: 5rem 2.5rem 4rem; display: grid;
-    grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-    max-width: 1100px; margin: 0 auto;
-  }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 2.5rem; }
-    .hero-visual { display: none; }
-    nav ul { gap: 1rem; }
-    nav { padding: 1rem 1.5rem; }
-    section { padding: 2.5rem 1.5rem; }
-    hr.divider { margin: 0 1.5rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-  .hero-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-  .hero-tag::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
-  h1 { font-family: var(--mono); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem; }
-  h1 .highlight { color: var(--accent); display: block; }
-  .hero-desc { color: var(--muted); font-size: 14px; max-width: 420px; margin-bottom: 1.5rem; line-height: 1.85; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; padding: 0.65rem 1.4rem; border-radius: 4px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
-  .btn-primary { background: var(--accent); color: #0c0e14; font-weight: 700; }
-  .btn-primary:hover { background: #38b2ac; transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden;
+}
+.hero-blur{
+  position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(26,108,255,0.22) 0%,rgba(26,108,255,0.05) 50%,transparent 70%);
+  pointer-events:none;
+}
+.hero-blur-2{
+  position:absolute;bottom:-80px;right:-80px;width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(26,108,255,0.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--blue);border:1px solid rgba(26,108,255,0.35);
+  border-radius:20px;padding:5px 16px;margin-bottom:2.5rem;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(3rem,8vw,6.5rem);
+  line-height:0.95;letter-spacing:-0.01em;
+  color:var(--text);margin-bottom:1.8rem;position:relative;z-index:1;
+}
+h1 .blue{color:var(--blue);}
+h1 .dim{opacity:0.2;}
+.hero-sub{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 2.5rem;line-height:1.85;position:relative;z-index:1;}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.btn{font-family:var(--inter);font-size:13px;letter-spacing:0.04em;padding:0.8rem 2rem;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:#1559d4;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.25);transform:translateY(-2px);}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--blue),transparent);}
 
-  .hero-visual { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-  .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
-  .chart-title { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-  .chart-val { font-family: var(--mono); font-size: 11px; color: var(--accent); }
-  .bar-chart { display: flex; align-items: flex-end; gap: 7px; height: 100px; }
-  .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
-  .bar { width: 100%; border-radius: 3px 3px 0 0; animation: growBar 1s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: bottom; }
-  @keyframes growBar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-  .bar-label { font-family: var(--mono); font-size: 9px; color: var(--muted); }
-  .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 1rem; }
-  .kpi { background: var(--bg3); border-radius: 6px; padding: 0.6rem 0.8rem; border: 1px solid var(--border); }
-  .kpi-num { font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--accent); display: block; }
-  .kpi-lbl { font-size: 10px; color: var(--muted); font-family: var(--mono); }
+section{padding:6rem 3rem;max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem;font-family:var(--inter);}
+h2{font-family:var(--syne);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;margin-bottom:0.5rem;line-height:1.15;letter-spacing:-0.01em;}
+.section-desc{color:var(--muted);font-size:14px;margin-bottom:3rem;max-width:480px;}
+hr.div{border:none;border-top:1px solid var(--border);margin:0 3rem;}
 
-  section { padding: 3.5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
-  .section-tag { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
-  h2 { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; }
-  .section-sub { color: var(--muted); font-size: 13px; margin-bottom: 2rem; }
-  hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 2.5rem; }
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-text p{color:var(--muted);font-size:15px;line-height:1.9;margin-bottom:1rem;}
+.about-text p strong{color:var(--text);font-weight:500;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;}
+.stat-num{font-family:var(--syne);font-size:2.5rem;font-weight:800;color:var(--blue);display:block;line-height:1;letter-spacing:-0.02em;}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:5px;letter-spacing:0.02em;}
 
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
-  .skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; transition: border-color 0.2s, transform 0.2s; }
-  .skill-card:hover { border-color: rgba(79,209,197,0.3); transform: translateY(-2px); }
-  .skill-icon { font-size: 18px; margin-bottom: 0.6rem; }
-  .skill-name { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-  .skill-bar { height: 3px; background: var(--bg3); border-radius: 2px; margin-top: 0.7rem; overflow: hidden; }
-  .skill-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent2), var(--accent)); animation: fillBar 1.2s ease forwards; transform-origin: left; }
-  @keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.6rem; }
-  .tag { font-family: var(--mono); font-size: 10px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 2px 7px; }
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+.skill-card:hover{border-color:rgba(26,108,255,0.4);transform:translateY(-3px);}
+.skill-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem;}
+.skill-name{font-family:var(--syne);font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.01em;}
+.skill-pct{font-size:12px;color:var(--blue);}
+.skill-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:2px;background:var(--blue);animation:fill 1.4s ease forwards;transform-origin:left;transform:scaleX(0);}
+@keyframes fill{to{transform:scaleX(1);}}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.8rem;}
+.tag{font-size:10px;background:rgba(26,108,255,0.1);color:rgba(100,160,255,0.9);border:1px solid rgba(26,108,255,0.2);border-radius:4px;padding:2px 8px;}
 
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
-  .cert-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; display: flex; gap: 0.8rem; align-items: flex-start; transition: border-color 0.2s; }
-  .cert-card:hover { border-color: rgba(124,108,250,0.3); }
-  .cert-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-  .cert-name { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 2px; line-height: 1.4; }
-  .cert-issuer { font-size: 11px; color: var(--muted); }
-  .cert-year { font-family: var(--mono); font-size: 10px; color: var(--accent); margin-top: 3px; }
+.exp-timeline{border-left:1px solid var(--border);padding-left:2.5rem;margin-left:6px;display:flex;flex-direction:column;gap:0;}
+.exp-item{position:relative;padding-bottom:2.5rem;}
+.exp-item:last-child{padding-bottom:0;}
+.exp-dot{position:absolute;left:-2.9rem;top:4px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid var(--black);box-shadow:0 0 12px rgba(26,108,255,0.7);}
+.exp-period{font-size:11px;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem;}
+.exp-role{font-family:var(--syne);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;letter-spacing:-0.01em;}
+.exp-company{font-size:13px;color:var(--muted);margin-bottom:0.8rem;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.exp-bullets li{font-size:13px;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.7;}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--blue);}
 
-  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-  .edu-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem; }
-  .edu-period { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 0.3rem; }
-  .edu-course { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
-  .edu-inst { font-size: 13px; color: var(--muted); }
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0.8rem;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s;}
+.cert-card:hover{border-color:rgba(26,108,255,0.3);}
+.cert-icon{width:32px;height:32px;border-radius:8px;background:rgba(26,108,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+.cert-name{font-family:var(--syne);font-size:12px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:3px;letter-spacing:-0.01em;}
+.cert-issuer{font-size:11px;color:var(--muted);}
+.cert-year{font-size:10px;color:var(--blue);margin-top:3px;letter-spacing:0.05em;}
 
-  .exp-list { border-left: 1px solid var(--border); padding-left: 2rem; margin-left: 0.5rem; }
-  .exp-item { position: relative; padding-bottom: 2rem; }
-  .exp-item::before { content: ''; position: absolute; left: -2.4rem; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); border: 2px solid var(--bg); }
-  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.3rem; }
-  .exp-role { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; }
-  .exp-company { font-size: 13px; color: var(--accent); margin-bottom: 0.5rem; }
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-  .exp-bullets li { font-size: 13px; color: var(--muted); line-height: 1.7; padding-left: 1rem; position: relative; }
-  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-size: 11px; top: 2px; }
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+.edu-period{font-size:11px;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;}
+.edu-course{font-family:var(--syne);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;letter-spacing:-0.01em;}
+.edu-inst{font-size:13px;color:var(--muted);}
 
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-  .contact-info p { color: var(--muted); font-size: 14px; margin-bottom: 1.5rem; line-height: 1.85; }
-  .contact-links { display: flex; flex-direction: column; gap: 0.7rem; }
-  .contact-link { display: flex; align-items: center; gap: 0.8rem; font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .contact-link:hover { color: var(--accent); }
-  .contact-link-icon { width: 28px; height: 28px; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: var(--mono); font-weight: 700; flex-shrink: 0; color: var(--accent2); }
+.contact-wrap{position:relative;overflow:hidden;border-top:1px solid var(--border);}
+.contact-blur-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(26,108,255,0.15) 0%,transparent 70%);pointer-events:none;}
+.contact-inner{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6rem 2rem;position:relative;z-index:1;}
+.contact-inner p{color:var(--muted);max-width:400px;margin:1rem auto 2.5rem;font-size:15px;line-height:1.8;}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:0.6rem;font-size:13px;color:var(--muted);text-decoration:none;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.65rem 1.3rem;transition:all 0.2s;}
+.contact-link:hover{color:var(--text);border-color:rgba(255,255,255,0.2);transform:translateY(-2px);}
 
-  .form-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
-  .form-box input, .form-box textarea {
-    background: var(--bg3); border: 1px solid var(--border); border-radius: 6px;
-    padding: 0.65rem 1rem; color: var(--text); font-family: var(--sans);
-    font-size: 14px; outline: none; width: 100%; transition: border-color 0.2s;
-  }
-  .form-box input:focus, .form-box textarea:focus { border-color: rgba(79,209,197,0.4); }
-  .form-box input::placeholder, .form-box textarea::placeholder { color: var(--muted); }
-  .form-box textarea { resize: vertical; }
+footer{border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;}
+footer .acc{color:var(--blue);}
 
-  footer { border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; }
-  .footer-accent { color: var(--accent); }
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  nav ul{display:none;}
+  .nav-btns{gap:0.5rem;}
+  section{padding:4rem 1.5rem;}
+  hr.div{margin:0 1.5rem;}
+  .about-grid{grid-template-columns:1fr;}
+  h1{font-size:3.5rem;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">// <span>geovana</span>.bi</div>
+  <a class="nav-logo" href="#">GQ<span>.</span></a>
   <ul>
+    <li><a href="#sobre">Sobre</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#certs">Certs</a></li>
     <li><a href="#exp">Exp.</a></li>
-    <li><a href="#edu">Formação</a></li>
+    <li><a href="#certs">Certs</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
+  <div class="nav-btns">
+    <a class="nav-btn nav-btn-ghost" href="https://github.com/GeovanaQ7" target="_blank">GitHub</a>
+    <a class="nav-btn nav-btn-solid" href="https://www.linkedin.com/in/geovana-queiroz-1a2ab5263" target="_blank">LinkedIn</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div style="border-bottom: 1px solid var(--border);">
 <div class="hero">
-  <div>
-    <div class="hero-tag">Análise de Dados & BI</div>
-    <h1>Geovana<span class="highlight">Queiroz.</span></h1>
-    <p class="hero-desc">Estudante de Engenharia de Computação com foco em Análise de Dados e Business Intelligence. Transformo planilhas e bancos de dados em insights que apoiam decisões estratégicas.</p>
-    <div style="margin-bottom: 1.5rem;">
-      <span style="font-family: var(--mono); font-size: 11px; color: var(--accent); background: rgba(79,209,197,0.08); border: 1px solid rgba(79,209,197,0.2); border-radius: 20px; padding: 4px 12px; letter-spacing: 0.08em;">✦ Buscando estágio em dados</span>
-    </div>
-    <div class="hero-btns">
-      <a class="btn btn-primary" href="https://www.linkedin.com/in/geovana-queiroz-1a2ab5263" target="_blank">LinkedIn</a>
-      <a class="btn btn-outline" href="https://github.com/GeovanaQ7" target="_blank">GitHub</a>
-    </div>
-  </div>
+  <div class="hero-blur"></div>
+  <div class="hero-blur-2"></div>
 
-  <div class="hero-visual">
-    <div class="chart-header">
-      <span class="chart-title">Certificações por ano</span>
-      <span class="chart-val">14 conquistas</span>
-    </div>
-    <div class="bar-chart">
-      <div class="bar-wrap">
-        <div class="bar" style="height:35%;background:var(--accent2);opacity:0.5;animation-delay:0s;"></div>
-        <span class="bar-label">2022</span>
-      </div>
-      <div class="bar-wrap">
-        <div class="bar" style="height:25%;background:var(--accent2);opacity:0.55;animation-delay:0.1s;"></div>
-        <span class="bar-label">2023</span>
-      </div>
-      <div class="bar-wrap">
-        <div class="bar" style="height:30%;background:var(--accent2);opacity:0.65;animation-delay:0.2s;"></div>
-        <span class="bar-label">2024</span>
-      </div>
-      <div class="bar-wrap">
-        <div class="bar" style="height:90%;background:var(--accent);animation-delay:0.3s;"></div>
-        <span class="bar-label">2025</span>
-      </div>
-      <div class="bar-wrap">
-        <div class="bar" style="height:55%;background:var(--accent);opacity:0.85;animation-delay:0.4s;"></div>
-        <span class="bar-label">2026</span>
-      </div>
-    </div>
-    <div class="kpi-row">
-      <div class="kpi"><span class="kpi-num">14</span><span class="kpi-lbl">Certificados</span></div>
-      <div class="kpi"><span class="kpi-num">4+</span><span class="kpi-lbl">Ferramentas</span></div>
-      <div class="kpi"><span class="kpi-num">2028</span><span class="kpi-lbl">Formação</span></div>
-    </div>
+  <h1>
+    <span class="dim">DATA</span><br>
+    <span>ANALYST</span><br>
+    <span class="blue">& BI</span>
+  </h1>
+  <p class="hero-sub">Geovana Queiroz — Estudante de Engenharia de Computação transformando dados em decisões estratégicas.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#contato">Entre em contato</a>
+    <a class="btn btn-ghost" href="#skills">Ver habilidades</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
   </div>
 </div>
+
+<div id="sobre" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+<section>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Sobre mim</div>
+      <h2 style="margin-bottom:1.5rem;">Dados que <span style="color:var(--blue);">contam histórias</span></h2>
+      <p>Sou <strong>estudante de Engenharia de Computação</strong> com foco em Análise de Dados e Business Intelligence. Tenho experiência prática com Power BI, Excel Avançado, SQL e Python.</p>
+      <p>Já trabalhei com extração e organização de dados, geração de relatórios e controle de indicadores em ambientes corporativos reais.</p>
+      <p>Busco um <strong>estágio em dados</strong> onde possa aprender, contribuir com análises e crescer junto ao time.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><span class="stat-num">14</span><div class="stat-lbl">Certificações</div></div>
+      <div class="stat-box"><span class="stat-num">2+</span><div class="stat-lbl">Anos de exp.</div></div>
+      <div class="stat-box"><span class="stat-num">5+</span><div class="stat-lbl">Ferramentas</div></div>
+      <div class="stat-box"><span class="stat-num">2028</span><div class="stat-lbl">Formação</div></div>
+    </div>
+  </div>
+</section>
 </div>
 
-<!-- SKILLS -->
 <section id="skills">
-  <div class="section-tag">// 01</div>
-  <h2>Habilidades técnicas</h2>
-  <p class="section-sub">Ferramentas e tecnologias que aplico na prática.</p>
+  <h2>Stack técnica</h2>
+  <p class="section-desc">Ferramentas e tecnologias que aplico no dia a dia.</p>
   <div class="skills-grid">
     <div class="skill-card">
-      <div class="skill-icon">📊</div>
-      <div class="skill-name">Power BI</div>
+      <div class="skill-top"><div class="skill-name">Power BI</div><div class="skill-pct">80%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:80%;animation-delay:0.1s;"></div></div>
       <div class="skill-tags"><span class="tag">Dashboards</span><span class="tag">DAX</span><span class="tag">Relatórios</span></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">📗</div>
-      <div class="skill-name">Excel Avançado</div>
+      <div class="skill-top"><div class="skill-name">Excel Avançado</div><div class="skill-pct">85%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:85%;animation-delay:0.2s;"></div></div>
-      <div class="skill-tags"><span class="tag">XLOOKUP</span><span class="tag">Dinâmicas</span><span class="tag">Gráficos</span></div>
+      <div class="skill-tags"><span class="tag">XLOOKUP</span><span class="tag">Dinâmicas</span><span class="tag">Fórmulas</span></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-name">SQL / MySQL</div>
+      <div class="skill-top"><div class="skill-name">SQL / MySQL</div><div class="skill-pct">70%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:70%;animation-delay:0.3s;"></div></div>
       <div class="skill-tags"><span class="tag">Consultas</span><span class="tag">Joins</span><span class="tag">Filtros</span></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🐍</div>
-      <div class="skill-name">Python</div>
+      <div class="skill-top"><div class="skill-name">Python</div><div class="skill-pct">55%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:55%;animation-delay:0.4s;"></div></div>
-      <div class="skill-tags"><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Análise</span></div>
+      <div class="skill-tags"><span class="tag">Pandas</span><span class="tag">Matplotlib</span></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-name">Front-end</div>
+      <div class="skill-top"><div class="skill-name">Front-end</div><div class="skill-pct">50%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:50%;animation-delay:0.5s;"></div></div>
-      <div class="skill-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      <div class="skill-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🔧</div>
-      <div class="skill-name">Ferramentas</div>
+      <div class="skill-top"><div class="skill-name">Git & GitHub</div><div class="skill-pct">65%</div></div>
       <div class="skill-bar"><div class="skill-fill" style="width:65%;animation-delay:0.6s;"></div></div>
-      <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Agile</span></div>
+      <div class="skill-tags"><span class="tag">Versionamento</span><span class="tag">Repositórios</span></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="div">
 
-<!-- EXPERIÊNCIA -->
 <section id="exp">
-  <div class="section-tag">// 02</div>
-  <h2>Experiência</h2>
-  <p class="section-sub">Vivência profissional com dados e processos.</p>
-  <div class="exp-list">
+  <h2>Trajetória profissional</h2>
+  <p class="section-desc">Vivência com dados em ambientes corporativos reais.</p>
+  <div class="exp-timeline">
     <div class="exp-item">
-      <div class="exp-date">jan. 2026 — atual · 4 meses</div>
+      <div class="exp-dot"></div>
+      <div class="exp-period">jan. 2026 — atual · Curitiba, PR</div>
       <div class="exp-role">Planejamento e Estratégia</div>
-      <div class="exp-company">Bellinati Perez · Curitiba, PR</div>
+      <div class="exp-company">Bellinati Perez</div>
       <ul class="exp-bullets">
         <li>Extração e organização de dados para apoio estratégico</li>
         <li>Geração de relatórios em Excel</li>
         <li>Apoio na melhoria e padronização de processos internos</li>
       </ul>
     </div>
-    <div class="exp-item" style="padding-bottom:0;">
-      <div class="exp-date">jan. 2025 — dez. 2025 · 1 ano</div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">jan. 2025 — dez. 2025 · Ananindeua</div>
       <div class="exp-role">Assistente Administrativo</div>
-      <div class="exp-company">Tel Telecomunicações · Ananindeua</div>
+      <div class="exp-company">Tel Telecomunicações</div>
       <ul class="exp-bullets">
         <li>Organização e análise de planilhas operacionais</li>
         <li>Controle de indicadores e métricas internas</li>
@@ -277,112 +280,31 @@
   </div>
 </section>
 
-<hr class="divider">
+<hr class="div">
 
-<!-- CERTIFICAÇÕES -->
 <section id="certs">
-  <div class="section-tag">// 03</div>
-  <h2>Certificações</h2>
-  <p class="section-sub">Cursos e certificados de instituições reconhecidas.</p>
+  <h2>Aprendizado contínuo</h2>
+  <p class="section-desc">Cursos e certificados de instituições reconhecidas.</p>
   <div class="certs-grid">
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent);"></div>
-      <div>
-        <div class="cert-name">Python para Dados: do Zero à Análise Completa</div>
-        <div class="cert-issuer">Asimov Academy</div>
-        <div class="cert-year">abr. 2026</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:#60a5fa;"></div>
-      <div>
-        <div class="cert-name">Artificial Intelligence Fundamentals</div>
-        <div class="cert-issuer">IBM</div>
-        <div class="cert-year">dez. 2025</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent2);"></div>
-      <div>
-        <div class="cert-name">Introdução à Análise de Dados — Power BI</div>
-        <div class="cert-issuer">Fundação Bradesco</div>
-        <div class="cert-year">set. 2025</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent2);"></div>
-      <div>
-        <div class="cert-name">Banco de Dados SQL Do Zero ao Avançado</div>
-        <div class="cert-issuer">Udemy</div>
-        <div class="cert-year">ago. 2025</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:#4ade80;"></div>
-      <div>
-        <div class="cert-name">Introduction to Data Science</div>
-        <div class="cert-issuer">Cisco</div>
-        <div class="cert-year">ago. 2025</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--muted);"></div>
-      <div>
-        <div class="cert-name">Formação Front-end — HTML, CSS, JS e React</div>
-        <div class="cert-issuer">Udemy</div>
-        <div class="cert-year">abr. 2024 · em andamento</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--muted);"></div>
-      <div>
-        <div class="cert-name">Versionamento de Código com Git e GitHub</div>
-        <div class="cert-issuer">DIO</div>
-        <div class="cert-year">abr. 2024</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:#f97316;"></div>
-      <div>
-        <div class="cert-name">Introduction to Cybersecurity</div>
-        <div class="cert-issuer">Cisco</div>
-        <div class="cert-year">nov. 2023</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent2);"></div>
-      <div>
-        <div class="cert-name">Trabalhando em Equipes Ágeis</div>
-        <div class="cert-issuer">DIO</div>
-        <div class="cert-year">dez. 2023</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent2);"></div>
-      <div>
-        <div class="cert-name">Excel Intermediário</div>
-        <div class="cert-issuer">Fundação Bradesco</div>
-        <div class="cert-year">jan. 2023</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-dot" style="background:var(--accent2);"></div>
-      <div>
-        <div class="cert-name">HTML, CSS e JavaScript na Prática</div>
-        <div class="cert-issuer">Fundação Bradesco</div>
-        <div class="cert-year">mai. 2022</div>
-      </div>
-    </div>
+    <div class="cert-card"><div class="cert-icon">🐍</div><div><div class="cert-name">Python para Dados: do Zero à Análise Completa</div><div class="cert-issuer">Asimov Academy</div><div class="cert-year">abr. 2026</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🤖</div><div><div class="cert-name">Artificial Intelligence Fundamentals</div><div class="cert-issuer">IBM</div><div class="cert-year">dez. 2025</div></div></div>
+    <div class="cert-card"><div class="cert-icon">📊</div><div><div class="cert-name">Introdução à Análise de Dados — Power BI</div><div class="cert-issuer">Fundação Bradesco</div><div class="cert-year">set. 2025</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🗄️</div><div><div class="cert-name">Banco de Dados SQL Do Zero ao Avançado</div><div class="cert-issuer">Udemy</div><div class="cert-year">ago. 2025</div></div></div>
+    <div class="cert-card"><div class="cert-icon">📡</div><div><div class="cert-name">Introduction to Data Science</div><div class="cert-issuer">Cisco</div><div class="cert-year">ago. 2025</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Formação Front-end — HTML, CSS, JS e React</div><div class="cert-issuer">Udemy</div><div class="cert-year">2024 · em andamento</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔧</div><div><div class="cert-name">Versionamento de Código com Git e GitHub</div><div class="cert-issuer">DIO</div><div class="cert-year">abr. 2024</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔐</div><div><div class="cert-name">Introduction to Cybersecurity</div><div class="cert-issuer">Cisco</div><div class="cert-year">nov. 2023</div></div></div>
+    <div class="cert-card"><div class="cert-icon">⚡</div><div><div class="cert-name">Trabalhando em Equipes Ágeis</div><div class="cert-issuer">DIO</div><div class="cert-year">dez. 2023</div></div></div>
+    <div class="cert-card"><div class="cert-icon">📗</div><div><div class="cert-name">Excel Intermediário</div><div class="cert-issuer">Fundação Bradesco</div><div class="cert-year">jan. 2023</div></div></div>
+    <div class="cert-card"><div class="cert-icon">💻</div><div><div class="cert-name">HTML, CSS e JavaScript na Prática</div><div class="cert-issuer">Fundação Bradesco</div><div class="cert-year">mai. 2022</div></div></div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="div">
 
-<!-- FORMAÇÃO -->
-<section id="edu">
-  <div class="section-tag">// 04</div>
-  <h2>Formação acadêmica</h2>
-  <p class="section-sub">Base técnica sólida em computação e dados.</p>
+<section>
+  <h2>Educação</h2>
+  <p class="section-desc">Base técnica sólida em computação.</p>
   <div class="edu-grid">
     <div class="edu-card">
       <div class="edu-period">2024 — 2028</div>
@@ -397,32 +319,22 @@
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- CONTATO -->
-<section id="contato">
-  <div class="section-tag">// 05</div>
-  <h2>Contato</h2>
-  <p class="section-sub">Aberta a oportunidades de estágio na área de dados.</p>
-  <div class="contact-links" style="display:flex;flex-direction:column;gap:0.8rem;max-width:480px;">
-    <a class="contact-link" href="https://www.linkedin.com/in/geovana-queiroz-1a2ab5263" target="_blank">
-      <div class="contact-link-icon">in</div>
-      linkedin.com/in/geovana-queiroz
-    </a>
-    <a class="contact-link" href="mailto:geovanaq60@gmail.com">
-      <div class="contact-link-icon">@</div>
-      geovanaq60@gmail.com
-    </a>
-    <a class="contact-link" href="https://github.com/GeovanaQ7" target="_blank">
-      <div class="contact-link-icon">gh</div>
-      github.com/GeovanaQ7
-    </a>
+<div class="contact-wrap" id="contato">
+  <div class="contact-blur-bg"></div>
+  <div class="contact-inner">
+    <h2 style="font-size:clamp(1.8rem,3vw,2.2rem);letter-spacing:-0.01em;"><span style="color:var(--blue);">Entre em contato</span></h2>
+    <p>Aberta a oportunidades de estágio na área de dados.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:geovanaq60@gmail.com">✉ geovanaq60@gmail.com</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/geovana-queiroz-1a2ab5263" target="_blank">in LinkedIn</a>
+      <a class="contact-link" href="https://github.com/GeovanaQ7" target="_blank">gh GitHub</a>
+    </div>
   </div>
-</section>
+</div>
 
 <footer>
-  <span>// <span class="footer-accent">geovana queiroz</span> · analista de dados</span>
-  <span>Curitiba, PR · <span class="footer-accent">2026</span></span>
+  <span>© 2026 <span class="acc">Geovana Queiroz</span></span>
+  <span><span class="acc">Data Analyst & BI</span></span>
 </footer>
 
 </body>
